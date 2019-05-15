@@ -98,7 +98,14 @@ function game() {
             grassEaterArr[i].eat();
         }
     }
-    io.sockets.emit("data", matrix);
+
+    //! Object to send
+    let sendData = {
+        matrix: matrix
+    }
+
+    //! Send data over the socket to clients who listens "data"
+    io.sockets.emit("data", sendData);
 }
 
 
