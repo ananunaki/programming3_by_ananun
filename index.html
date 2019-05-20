@@ -4,9 +4,6 @@
     <meta charset="utf8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="p5.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="script.js"></script>
     <style>
         canvas {
             display: block;
@@ -51,17 +48,20 @@
                 <td scope="row" style="background-color:green;"></td>
                 <td>Կանաչը խոտն է, որը բազմանում է N ցիկլը մեկ,մահանում է երբ նրան ուտում է խոտակերը, կամ այրում է
                     կրակը, կամ նրան կոխկրտում է գիշատիչը</td>
-                <td id="garssCount"></td>
+                <td id="grassCount"></td>
             </tr>
             <tr>
                 <th scope="row">2</th>
                 <td scope="row" style="background-color:orange;"></td>
                 <td>Դեղինը խոտակերն է, որը բազմանում է N հատ խոտ ուտելուց հետո և մահանում է N հատ չուտելուց հետո, կամ
                     երբ նրան ուտում է գիշատիչը, կամ երբ նրան այրում է կրակը:</td>
-                <td id="garssEaterCount"></td>
+                <td id="grassEaterCount"></td>
             </tr>
         </tbody>
     </table>
+    <script src="p5.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

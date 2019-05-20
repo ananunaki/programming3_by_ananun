@@ -1,16 +1,22 @@
 
+//! Requiring modules  --  START
+var Grass = require("./modules/Grass.js");
+var GrassEater = require("./modules/GrassEater.js");
+let random = require('./modules/random');
+//! Requiring modules  --  END
 
 
 //! Setting global arrays  --  START
 grassArr = [];
 grassEaterArr = [];
 matrix = [];
+grassHashiv = 0;
 //! Setting global arrays  -- END
 
 
 
+
 //! Creating MATRIX -- START
-let random = require('./modules/random');
 function matrixGenerator(matrixSize, grass, grassEater, grassEaterEater, waterArr, fireArr) {
     for (let i = 0; i < matrixSize; i++) {
         matrix[i] = [];
@@ -19,8 +25,8 @@ function matrixGenerator(matrixSize, grass, grassEater, grassEaterEater, waterAr
         }
     }
     for (let i = 0; i < grass; i++) {
-        let customX = Math.floor(random(matrixSize)); // 0 - 39
-        let customY = Math.floor(random(matrixSize));
+        let customX = Math.floor(random(matrixSize)); // 0-9
+        let customY = Math.floor(random(matrixSize)); // 4
         matrix[customY][customX] = 1;
     }
     for (let i = 0; i < grassEater; i++) {
@@ -44,15 +50,8 @@ function matrixGenerator(matrixSize, grass, grassEater, grassEaterEater, waterAr
         matrix[customY][customX] = 5;
     }
 }
-matrixGenerator(10, 5, 1);
+matrixGenerator(20, 1, 1);
 //! Creating MATRIX -- END
-
-
-
-//! Requiring modules  --  START
-var Grass = require("./modules/Grass.js");
-var GrassEater = require("./modules/GrassEater.js");
-//! Requiring modules  --  END
 
 
 
@@ -79,13 +78,12 @@ function creatingObjects() {
             } else if (matrix[y][x] == 1) {
                 var grass = new Grass(x, y);
                 grassArr.push(grass);
+                grassHashiv++;
             }
         }
     }
 }
 creatingObjects();
-
-
 
 function game() {
     if (grassArr[0] !== undefined) {
@@ -101,7 +99,8 @@ function game() {
 
     //! Object to send
     let sendData = {
-        matrix: matrix
+        matrix: matrix,
+        grassCounter: grassHashiv
     }
 
     //! Send data over the socket to clients who listens "data"

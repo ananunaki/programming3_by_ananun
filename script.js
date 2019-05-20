@@ -1,17 +1,25 @@
+
 //! Setup function fires automatically
 function setup() {
+
     var socket = io();
+
     var side = 30;
+
     var matrix = [];
+
     //! Getting DOM objects (HTML elements)
-    let grassCount = document.getElementById('grassCount');
-    let grassEaterCount = document.getElementById('grassEaterCount');
+    let grassCountElement = document.getElementById('grassCount');
+    let grassEaterCountElement = document.getElementById('grassEaterCount');
+
     //! adding socket listener on "data" <-- name, after that fire 'drawCreatures' function 
+
     socket.on("data", drawCreatures);
 
     function drawCreatures(data) {
         //! after getting data pass it to matrix variable
         matrix = data.matrix;
+        grassCountElement.innerText = data.grassCounter;
         //! Every time it creates new Canvas woth new matrix size
         createCanvas(matrix[0].length * side, matrix.length * side)
         //! clearing background by setting it to new grey color
